@@ -1,0 +1,30 @@
+@model Plan
+
+
+<h1>@Model.ActName</h1>
+<a asp-action="Home" asp-controller="Action">Home</a>
+<h4>Description: </h4>
+<h6>@Model.Description</h6>
+
+<h4>Participants: </h4>
+@foreach(var s in @Model.ShowingUp)
+{
+    <ul>
+        <li>@s.Participent.FirstName</li>
+    </ul>
+}
+
+<h1>Join</h1>
+@if(@ViewBag.User.UserId != @Model.Planner.UserId)
+{
+    @if(Model.ShowingUp.Any(s => s.UserId != @ViewBag.User.UserId))
+    {
+        <a asp-action="Join" asp-controller="Action" asp-route-planId="@Model.PlanId" asp-route-userId="@ViewBag.User.UserId" asp-route-status="remove">Leave</a>
+    }
+    @if(Model.ShowingUp.All(s => s.UserId == @ViewBag.User.UserId))
+    {
+        <a asp-action="Join" asp-controller="Action" asp-route-planId="@Model.PlanId" asp-route-userId="@ViewBag.User.UserId" asp-route-status="add">Join</a>
+    }
+}
+
+

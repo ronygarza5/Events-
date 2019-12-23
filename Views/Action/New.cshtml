@@ -1,0 +1,24 @@
+@model Plan
+
+
+<h1>Create an Activity!</h1>
+<a asp-action="Home" asp-controller="Action">Home</a>
+<div asp-validation-summary="All" class="text-danger"></div>
+<form asp-action="Create" asp-controller="Action" method="POST">
+    <label asp-for="ActName"></label>
+    <input asp-for="ActName"><br>
+    <label asp-for="Date"></label>
+    <input asp-for="Date"><br>
+    <label asp-for="Description"></label>
+    <input asp-for="Description"><br>
+    <label asp-for="Duration"></label>
+    <input asp-for="Duration">
+    <!-- <select>
+        <option value="Hours">Hours</option>
+        <option value="Mins">Mins</option>
+        <option value="Days">Days</option>
+    </select> -->
+    <input type="hidden" asp-for="UserId" value="@ViewBag.User.UserId">
+    <input type="submit" value="Create" class="btn btn-outline-warning">
+
+</form>
